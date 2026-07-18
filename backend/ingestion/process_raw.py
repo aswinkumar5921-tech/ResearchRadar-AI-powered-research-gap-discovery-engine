@@ -1,6 +1,11 @@
 import os
 import json
 import sqlite3
+import sys
+import os
+
+sys.path.append(os.path.abspath("backend"))
+from backend.database.insert_authors import insert_authors
 
 conn=sqlite3.connect("data/sqlite/research.db")
 cursor=conn.cursor()
@@ -77,6 +82,21 @@ for file in files:
                     paper_type,
                     venue
                 ))
+                paper_db_id = cursor.lastrowid
+                if paper_db_id == 0:
+                    cursor.execute(
+                        "SELECT id FROM papers WHERE openalex_id=?",
+                        (paper["id"],)
+                    )
+                    paper_db_id = cursor.fetchone()[0]
+
+                insert_authors(
+                    cursor,
+                    paper_db_id,
+                    paper.get("authorships", [])
+                )
+                                
+                                
 conn.commit()
 conn.close()
 
