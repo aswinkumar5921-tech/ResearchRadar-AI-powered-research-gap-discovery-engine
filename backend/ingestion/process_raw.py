@@ -6,6 +6,7 @@ import os
 
 sys.path.append(os.path.abspath("backend"))
 from backend.database.insert_authors import insert_authors
+from backend.database.insert_concepts import insert_concepts
 
 conn=sqlite3.connect("data/sqlite/research.db")
 cursor=conn.cursor()
@@ -94,6 +95,11 @@ for file in files:
                     cursor,
                     paper_db_id,
                     paper.get("authorships", [])
+                )
+                insert_concepts(
+                    cursor,
+                    paper_db_id,
+                    paper.get("concepts", [])
                 )
                                 
                                 
