@@ -6,27 +6,29 @@ cursor = conn.cursor()
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS papers (
 
-id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
 
-openalex_id TEXT UNIQUE,
+    openalex_id TEXT UNIQUE,
 
-title TEXT,
+    title TEXT,
 
-abstract TEXT,
+    abstract TEXT,
 
-publication_year INTEGER,
+    publication_year INTEGER,
 
-doi TEXT,
+    doi TEXT,
 
-citations INTEGER,
+    cited_by_count INTEGER,
 
-language TEXT,
+    language TEXT,
 
-type TEXT
+    paper_type TEXT,
+
+    created_date TEXT
 )
 """)
 
 conn.commit()
 conn.close()
 
-print("Database created")
+print("Database created successfully!")
