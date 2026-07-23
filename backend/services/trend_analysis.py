@@ -44,7 +44,21 @@ def calculate_growth(trend):
         return 100
 
     return ((last - first) / first) * 100
+from collections import defaultdict
 
+
+def get_trend_from_papers(papers):
+
+    trend = defaultdict(int)
+
+    for paper in papers:
+
+        year = paper.get("year")
+
+        if year is not None:
+            trend[year] += 1
+
+    return dict(sorted(trend.items()))
 if __name__ == "__main__":
 
     topic = input("Enter topic: ")

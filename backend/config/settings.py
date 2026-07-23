@@ -10,3 +10,10 @@ DATABASE_PATH = BASE_DIR / "data" / "sqlite" / "research.db"
 GRAPH_PATH = BASE_DIR / "data" / "graph" / "research_graph.gexf"
 
 OPENALEX_EMAIL = os.getenv("OPENALEX_EMAIL", "")
+GAP_WEIGHTS = {
+    "semantic": 0.35,
+    "trend": 0.20,
+    "citation": 0.20,
+    "bridge": 0.15,
+    "graph": 0.10
+}
